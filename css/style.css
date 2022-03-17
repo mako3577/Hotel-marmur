@@ -1,0 +1,168 @@
+/* COLORS
+main-red
+#fa5252
+dark
+#e03131
+bright
+#ff6b6b
+
+
+orange
+main-orange
+#ffc078
+dark
+#ff922b
+bright
+#ffd8a8
+
+
+
+
+
+*/
+html {
+  font-size: 62.5%;
+}
+
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-2-cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+.primary-header {
+  display: inline-block;
+  font-size: 128px;
+
+  color: #ccc;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.192);
+}
+
+.secondary-header {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  font-size: 4.8rem;
+  color: #ccc;
+}
+
+.tertiary-header {
+  color: #444;
+  font-size: 3.2rem;
+  padding-bottom: 2.4rem;
+}
+
+.flex {
+  display: flex;
+}
+.column {
+  flex-direction: column;
+}
+
+.hero-img {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.9;
+  filter: brightness(40%) grayscale(20%);
+}
+
+.nav-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 12.8rem;
+  width: 100%;
+  background-color: #2222228a;
+  color: #ccc;
+  font-size: 2.4rem;
+  justify-content: space-around;
+}
+.logo {
+  width: 24rem;
+  transform: translate(-1rem, -5rem);
+}
+
+.nav-list {
+  list-style: none;
+  height: 100%;
+  gap: 3.2rem;
+  align-items: center;
+}
+.hero-section {
+  height: 100vh;
+}
+.hero-section .container {
+  height: 100vh;
+}
+
+.container {
+  justify-content: space-around;
+  margin: 0 auto 6.4rem auto;
+  padding: 6.4rem 3.2rem;
+}
+
+.about-us-section {
+  font-size: 1.8rem;
+  background-color: white;
+}
+
+.about-us-section .container {
+  row-gap: 12.8rem;
+  column-gap: 3.2rem;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.about-us-section .secondary-header {
+  color: #333;
+  padding: 0 0 0.8rem 0;
+}
+.about-us-section .header {
+  grid-column: 1/-1;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 0;
+}
+
+.about-us-img {
+  width: 100%;
+}
+
+/* Reviews section */
+
+.reviews-section {
+}
+
+.reviews-images {
+  background-color: black;
+  width: 100%;
+  overflow: hidden;
+  gap: 4rem;
+  position: absolute;
+}
+.review-image {
+  height: 20rem;
+  transition: transform 4s;
+  position: relative;
+}
+
+.review-image.move-right {
+  left: 0;
+  transform: translateX(-100%);
+}
