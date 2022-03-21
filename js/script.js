@@ -46,7 +46,7 @@
 //   images.forEach(normalTransition);
 // };
 
-let i = 1;
+let i = 0;
 let currentDistance = 0;
 const imgWidth = 65;
 const images = document.querySelectorAll(".gallery-image");
@@ -56,42 +56,70 @@ const transformLeft = function (imm) {
 };
 let imgZindex = 0;
 
+let galleryInactivityTimer = 6500;
+
 const moveLeft = function () {
-  if (i < images.length) {
-    images[i].style.zIndex = `${imgZindex}`;
-    images[i].style.animation = "moveRight";
-    images[i].style.animationDuration = "1s";
-    images[i].style.opacity = "1";
+  if (i > 0) {
+    images[i].style.animation = "moveLeftAgain";
+    images[i].style.animationDuration = "0.8s";
+    i--;
+  } else {
+    i = images.length - 1;
 
-    for (let step = 0; step < i; step++) {
-      images[step].style.animation = "moveLeftAgain";
-      images[step].style.animationDuration = "1s";
-    }
+    images[0].style.animation = "moveLeftAgain";
+    images[0].style.animationDuration = "0.8s";
+  }
+  images[i].style.zIndex = `${imgZindex}`;
+  images[i].style.animation = "moveLeft";
+  images[i].style.animationDuration = "0.8s";
+  images[i].style.opacity = "1";
+  imgZindex += 1;
+  console.log(i);
 
+  return imgZindex;
+};
+
+const moveRight = function () {
+  if (i < images.length - 1) {
     i++;
-    imgZindex += 1;
+
+    images[i - 1].style.animation = "moveRightAgain";
+    images[i - 1].style.animationDuration = "0.8s";
   } else {
     i = 0;
-    images[i].style.zIndex = `${imgZindex}`;
-    images[i].style.animation = "moveRight";
-    images[i].style.animationDuration = "1s";
-    images[i].style.opacity = "1";
-    images[5].style.animation = "moveLeftAgain";
-    images[5].style.animationDuration = "1s";
-
-    for (let step = 0; step < i; step++) {
-      images[step].style.animation = "moveLeftAgain";
-      images[step].style.animationDuration = "1s";
-    }
-    imgZindex += 1;
-    i++;
+    images[images.length - 1].style.animation = "moveRightAgain";
+    images[images.length - 1].style.animationDuration = "0.8s";
   }
+
+  images[i].style.zIndex = `${imgZindex}`;
+  images[i].style.animation = "moveRight";
+  images[i].style.animationDuration = "0.8s";
+  images[i].style.opacity = "1";
   console.log(i);
+  imgZindex += 1;
+
   return imgZindex;
 };
 
 // setInterval(moveLeft, 3000);
+const gallery = document.querySelector(".gallery-images");
 
 const galleryBtn = document.querySelector(".gallery-btn");
+const galleryBtnRight = document.querySelector(".gallery-btn-right");
+const galleryBtnLeft = document.querySelector(".gallery-btn-left");
 
-galleryBtn.addEventListener("click", moveLeft);
+galleryBtnRight.addEventListener("click", moveRight);
+galleryBtnLeft.addEventListener("click", moveLeft);
+// clearInterval(myTimer);
+gallery.addEventListener("mouseenter", function () {
+  intervals.forEach(function (interval) {
+    clearInterval(interval);
+  });
+  intervals.pop();
+});
+gallery.addEventListener("mouseleave", function () {
+  intervals.push(setInterval(moveRight, 5000));
+});
+
+let intervals = [];
+intervals.push(setInterval(moveRight, 5000));
